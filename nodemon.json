@@ -1,0 +1,8 @@
+{
+  "watch": ["src"],
+  "events": {
+    "start": "cls || clear"
+  },
+  "ext": "ts",
+  "exec": "node --no-warnings --loader ts-node/esm src/app.ts"
+}
