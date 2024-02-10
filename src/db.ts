@@ -4,4 +4,4 @@ export type User = {
   email: string;
 };
 
-export const users: User[] = []
+export const users: User[] = [];

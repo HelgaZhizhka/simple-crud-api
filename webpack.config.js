@@ -1,19 +1,23 @@
-import { dirname, resolve } from 'path'
-import { fileURLToPath } from 'url'
+import { dirname, resolve } from "path";
+import { argv } from "process";
+import { fileURLToPath } from "url";
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default (_, argv) => {
-  const isProduction = argv.mode === 'production'
+  const mode = argv;
 
   return {
-    target: 'node',
-    mode: isProduction ? 'production' : 'development',
-    entry: './src/app.ts',
+    target: "node",
+    mode: mode,
+    entry: "./src/app.ts",
     output: {
-      path: resolve(__dirname, './dist'),
-      filename: 'bundle.js',
-      chunkFormat: 'commonjs',
+      path: resolve(__dirname, "./dist"),
+      filename: "app.js",
+      library: {
+        type: "module",
+      },
+      chunkFormat: "module",
     },
     experiments: {
       outputModule: true,
@@ -23,19 +27,14 @@ export default (_, argv) => {
       rules: [
         {
           test: /\.ts$/,
-          use: 'ts-loader',
-          exclude: /node_modules/,
-        },
-        {
-          test: /.m?js$/,
-          loader: 'babel-loader',
+          use: "ts-loader",
           exclude: /node_modules/,
         },
       ],
     },
     resolve: {
-      extensions: ['.ts', '.js'],
+      extensions: [".ts", ".js"],
     },
-    devtool: isProduction ? false : 'source-map',
-  }
-}
+    devtool: false,
+  };
+};
