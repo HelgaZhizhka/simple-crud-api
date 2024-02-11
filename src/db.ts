@@ -1,7 +1,8 @@
 export type User = {
-  id: number;
-  name: string;
-  email: string;
-};
+  id: string
+  username: string
+  age: number
+  hobbies: string[]
+}
 
-export const users: User[] = [];
+export const users: User[] = []

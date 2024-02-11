@@ -1,10 +1,12 @@
 # Simple CRUD API
 
-Simple GRUD API using Node.js
+Simple GRUD API using Node.js and TypeScript
 
 ## Notes
 
 PORT can be set in .env file
+
+use .env.example as a template
 
 ## Installation
 
@@ -45,7 +47,7 @@ GET /api/users
 ### Get user by id
 
 ```bash
-GET /api/users/:id
+GET /api/users/{userId}
 ```
 
 ### Create user
@@ -57,11 +59,11 @@ POST /api/users
 ### Update user
 
 ```bash
-PUT /api/users/:id
+PUT /api/users/{userId}
 ```
 
 ### Delete user
 
 ```bash
-DELETE /api/users/:id
+DELETE /api/users/{userId}
 ```

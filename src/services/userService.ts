@@ -1,40 +1,34 @@
 import { User, users } from "../db";
+import { generateUniqueId } from "../utils";
 
-export const getAllUsers = (): User[] => {
-  return users || [];
-};
+export const getAllUsers = (): User[] => users || [];
 
-export const getUserById = (id: number): User | undefined => {
-  return users.find((user) => user.id === id);
-};
+export const getUserById = (id: string): User | undefined =>
+  users.find((user) => user.id === id)
 
 export const createUser = (userData: User): User => {
   const newUser = { ...userData, id: generateUniqueId() };
-  users.push(newUser);
+  users.push(newUser)
   return newUser;
 };
 
 export const updateUser = (
-  id: number,
-  userData: Partial<User>,
+  id: string,
+  userData: Partial<User>
 ): User | undefined => {
-  const user = users.find((user) => user.id === id);
-  if (user) {
-    Object.assign(user, userData);
-    return user;
+  const foundUser = users.find((user) => user.id === id)
+  if (foundUser) {
+    Object.assign(foundUser, userData)
+    return foundUser
   }
-  return undefined;
-};
+  return undefined
+}
 
-export const deleteUser = (id: number): boolean => {
-  const index = users.findIndex((user) => user.id === id);
+export const deleteUser = (id: string): boolean => {
+  const index = users.findIndex((user) => user.id === id)
   if (index > -1) {
-    users.splice(index, 1);
-    return true;
+    users.splice(index, 1)
+    return true
   }
-  return false;
-};
-
-const generateUniqueId = (): number => {
-  return Math.floor(Math.random() * 1000);
-};
+  return false
+}
