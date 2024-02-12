@@ -10,7 +10,7 @@ export default (_, argv) => {
   return {
     target: "node",
     mode: mode,
-    entry: "./src/app.ts",
+    entry: "./src/server.ts",
     output: {
       path: resolve(__dirname, "./dist"),
       filename: "app.js",
