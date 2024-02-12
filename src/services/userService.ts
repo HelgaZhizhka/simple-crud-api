@@ -1,16 +1,16 @@
-import { User, users } from "../db";
-import { generateUniqueId } from "../utils";
+import { User, users } from '../db'
+import { generateUniqueId } from '../utils'
 
-export const getAllUsers = (): User[] => users || [];
+export const getAllUsers = (): User[] => users || []
 
 export const getUserById = (id: string): User | undefined =>
   users.find((user) => user.id === id)
 
 export const createUser = (userData: User): User => {
-  const newUser = { ...userData, id: generateUniqueId() };
+  const newUser = { ...userData, id: generateUniqueId() }
   users.push(newUser)
-  return newUser;
-};
+  return newUser
+}
 
 export const updateUser = (
   id: string,
@@ -18,7 +18,8 @@ export const updateUser = (
 ): User | undefined => {
   const foundUser = users.find((user) => user.id === id)
   if (foundUser) {
-    Object.assign(foundUser, userData)
+    const { id: _, ...updateData } = userData
+    Object.assign(foundUser, updateData)
     return foundUser
   }
   return undefined

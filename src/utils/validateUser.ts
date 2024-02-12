@@ -1,8 +1,16 @@
 import { User } from '../db'
 
 const validateUser = (
-  userData: Partial<User>
+  userData: Partial<User>,
+  isUpdate: boolean = false
 ): { valid: boolean; message?: string } => {
+  if (isUpdate && userData.id) {
+    return {
+      valid: false,
+      message: 'Updating the id of a user is not allowed.',
+    }
+  }
+  
   if (!userData.username || typeof userData.username !== 'string') {
     return {
       valid: false,

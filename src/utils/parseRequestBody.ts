@@ -7,10 +7,15 @@ const parseRequestBody = <T>(req: IncomingMessage): Promise<T> =>
       body += chunk.toString()
     })
     req.on('end', () => {
+      if (body.trim() === '') {
+        reject(new Error('Empty request body'))
+        return
+      }
       try {
-        resolve(JSON.parse(body) as T)
+        const parsed = JSON.parse(body)
+        resolve(parsed as T)
       } catch (error) {
-        reject(error)
+        reject(new Error('Invalid JSON format'))
       }
     })
   })

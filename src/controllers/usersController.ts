@@ -61,7 +61,7 @@ export const usersRouter = async (
           return
         }
         const userData = await parseRequestBody<Partial<User>>(req)
-        const validationPutResult = validateUser(userData)
+        const validationPutResult = validateUser(userData, true)
         if (!validationPutResult.valid) {
           sendJsonResponse(res, { error: validationPutResult.message }, 400)
           return
