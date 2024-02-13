@@ -28,6 +28,9 @@ npm start:dev
 
 # Run in production mode
 npm start:prod
+
+# Run in multi mode
+npm start:multi
 ```
 
 ## Test
